@@ -1,0 +1,39 @@
+package com.custcoding.estaleiromavingue.App.models;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "facturas_agua")
+public class FacturaAgua {
+   @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private LocalDateTime data;
+
+    @Column(name = "taxa_fixa", nullable = false)
+    private double taxaFixa;
+
+    @Column(nullable = false)
+    private double valor;
+    
+    @Column(name = "valor_total", nullable = false)
+    private double valorTotal;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado_pagamento", nullable = false)
+    private EstadoPagamento estadoPagamento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "forma_pagamento", nullable = false)
+    private FormaPagamento formaPagamento;
+
+     @ManyToOne
+    @JoinColumn(name = "id_consumidor", nullable = false)
+    private ConsumidorAgua consumidor;
+
+    @ManyToOne
+    @JoinColumn(name = "id_leitura", nullable = false)
+    private LeituraAgua leitura;
+}
