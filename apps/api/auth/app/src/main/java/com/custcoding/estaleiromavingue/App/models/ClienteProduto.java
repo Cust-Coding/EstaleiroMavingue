@@ -1,11 +1,20 @@
 package com.custcoding.estaleiromavingue.App.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "ClienteProduto")
 public class ClienteProduto {
-     @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
