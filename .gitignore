@@ -1,0 +1,93 @@
+############################
+# ====== JAVA / SPRING =====
+############################
+
+# Compilados
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Logs
+*.log
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+
+############################
+# ====== NODE / TS / TSX ===
+############################
+
+# Dependências
+node_modules/
+
+# Build
+dist/
+build/
+.next/
+out/
+coverage/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# Cache
+.cache/
+.eslintcache
+*.tsbuildinfo
+
+############################
+# ====== RUST / ACTIX ======
+############################
+
+# Compilação Rust
+target/
+
+# Cargo
+Cargo.lock
+# (remova a linha acima se for aplicação binária e quiser versionar o lock)
+
+# Backup
+**/*.rs.bk
+
+############################
+# ====== SISTEMA ===========
+############################
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.swp
+*.swo
+*~
