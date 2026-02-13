@@ -1,5 +1,6 @@
 package com.custcoding.estaleiromavingue.App.models;
 
+import com.custcoding.estaleiromavingue.App.models.status.TipoMovimento;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 

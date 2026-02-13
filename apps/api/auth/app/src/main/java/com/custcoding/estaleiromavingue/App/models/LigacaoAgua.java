@@ -1,4 +1,5 @@
 package com.custcoding.estaleiromavingue.App.models;
+import com.custcoding.estaleiromavingue.App.models.status.EstadoLigacao;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 

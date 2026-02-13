@@ -1,5 +1,6 @@
 package com.custcoding.estaleiromavingue.App.models;
 
+import com.custcoding.estaleiromavingue.App.models.status.FormaPagamento;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -38,7 +39,7 @@ public class Venda {
     
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
-    private ClienteProduto cliente;
+    private CustomerProduto cliente;
 
     
     @ManyToOne

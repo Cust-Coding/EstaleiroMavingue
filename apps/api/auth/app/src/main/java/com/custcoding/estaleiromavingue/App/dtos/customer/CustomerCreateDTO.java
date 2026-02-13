@@ -1,4 +1,4 @@
-package com.custcoding.estaleiromavingue.App.dtos;
+package com.custcoding.estaleiromavingue.App.dtos.customer;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

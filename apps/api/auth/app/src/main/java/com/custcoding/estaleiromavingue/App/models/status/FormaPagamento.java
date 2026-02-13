@@ -1,4 +1,4 @@
-package com.custcoding.estaleiromavingue.App.models;
+package com.custcoding.estaleiromavingue.App.models.status;
 
 public enum FormaPagamento {
      CARTEIRA_MOVEL,

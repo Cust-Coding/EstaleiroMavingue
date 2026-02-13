@@ -1,18 +1,16 @@
 package com.custcoding.estaleiromavingue.App.services;
 
 
-import com.custcoding.estaleiromavingue.App.dtos.CustomerCreateDTO;
-import com.custcoding.estaleiromavingue.App.dtos.CustomerResponseDTO;
+import com.custcoding.estaleiromavingue.App.dtos.customer.CustomerCreateDTO;
+import com.custcoding.estaleiromavingue.App.dtos.customer.CustomerResponseDTO;
 import com.custcoding.estaleiromavingue.App.mappers.CustomerMapper;
 import com.custcoding.estaleiromavingue.App.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.nio.file.LinkOption;
 import java.util.List;
 import java.util.stream.Collectors;
 
