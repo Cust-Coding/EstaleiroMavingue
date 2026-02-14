@@ -23,7 +23,7 @@ public class Venda {
     @Column(name = "preco_unitario", nullable = false)
     private double precoUnitario;
 
-     @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "forma_pagamento", nullable = false)
     private FormaPagamento formaPagamento;
 

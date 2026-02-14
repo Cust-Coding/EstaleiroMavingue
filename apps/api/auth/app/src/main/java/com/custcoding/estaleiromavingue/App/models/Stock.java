@@ -10,18 +10,17 @@ public class Stock {
     private Long id;
 
     @Column(nullable = false)
-    private int quantidade;
+    private Integer quantidade;
 
     @Column(name = "stock_minimo", nullable = false)
-    private int stockMinimo;
-
+    private Integer stockMinimo;
     
     @ManyToOne
     @JoinColumn(name = "id_produto", nullable = false)
     private Product produto;
 
     
-     @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_ferragem", nullable = false)
     private Ferragem ferragem;
 

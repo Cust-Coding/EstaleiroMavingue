@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "ClienteProduto")
+@Table(name = "t_product")
 public class CustomerProduto {
 
     @Id
@@ -27,6 +28,8 @@ public class CustomerProduto {
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "data_criacao", nullable = false)
+    @Column(name = "data_criacao", nullable = true)
+    @CreationTimestamp
     private LocalDateTime dataCriacao;
+
 }

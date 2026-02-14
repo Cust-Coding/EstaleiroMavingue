@@ -21,7 +21,6 @@ public class ProductMapper {
         return product;
     }
 
-
     public ProductResponseDTO toProductResponseDTO(
             Product dto
     ){
@@ -32,6 +31,4 @@ public class ProductMapper {
                 dto.getPrice()
         );
     }
-
-
 }

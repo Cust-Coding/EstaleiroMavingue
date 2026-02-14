@@ -3,10 +3,17 @@ package com.custcoding.estaleiromavingue.App.controllers;
 import com.custcoding.estaleiromavingue.App.dtos.product.ProductCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.product.ProductResponseDTO;
 import com.custcoding.estaleiromavingue.App.services.ProductService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -18,14 +25,14 @@ public class ProductController {
 
     @GetMapping("/")
     public List<ProductResponseDTO> getProducts(){
-        return productService.getProducts() ;
+        return this.productService.getProducts() ;
     }
 
     @GetMapping("/{id}")
     public ProductResponseDTO getProductById(
-            @PathVariable("id") Long id
+           @Valid @PathVariable("id") Long id
     ){
-        return productService.getProductById(id);
+        return this.productService.getProductById(id);
     }
 
     /*    @GetMapping("/{name}")
@@ -37,10 +44,10 @@ public class ProductController {
 
     @PostMapping("/")
     public ProductResponseDTO postProduct(
-            ProductCreateDTO product
+           @Valid @RequestBody ProductCreateDTO product
     ){
-            return productService.postProduct(product);
-        }
+            return this.productService.postProduct(product);
+    }
     /*
     @PutMapping("/{id}")
     public CustomerResponseDTO updateCustomer(
@@ -55,6 +62,22 @@ public class ProductController {
     ){
         productService.deleteProduct(id);
     }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleValidationException(
+            MethodArgumentNotValidException exception
+    ){
+        Map<String, String> errors = new HashMap<>();
+        exception.getBindingResult().getAllErrors()
+                .forEach(error -> {
+                   var fieldName = ((FieldError) error).getField();
+                   var errorMessage = error.getDefaultMessage();
+                   errors.put(fieldName, errorMessage);
+                });
+
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
 
 
 }
