@@ -24,8 +24,6 @@ const Badge = ({ children, type = "success" }) => {
 };
 
 
-
-
 // -(APP) ################
 
 export default function MainPage() {
