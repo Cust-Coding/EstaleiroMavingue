@@ -1,11 +1,5 @@
 'use client'
 
-
-
-
-
-
-
 export default function CatalogoProdutos() {
   // Dados simulados do Backend
   const produtos = [

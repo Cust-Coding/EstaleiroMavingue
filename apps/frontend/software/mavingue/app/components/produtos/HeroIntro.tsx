@@ -3,7 +3,8 @@ export default function HeroIntro (){
     <div 
       className="w-screen min-h-[60vh] flex items-center justify-start relative px-6 lg:px-20 py-20"
       style={{
-        // backgroundImage: "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop')", 
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop')", 
+       //Reparei que existe um bug de imagem nao renderizar entao vou botar 2 para previnir qualquer cena  
         backgroundImage:"linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.5)) ,url('/Intro.jpg')  ",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
