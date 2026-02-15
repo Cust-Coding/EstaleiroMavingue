@@ -36,19 +36,13 @@ public class CustomerController {
         return this.customerService.getCustomerById(id);
     }
 
-/*    @GetMapping("/{name}")
-    public CustomerResponseDTO getCustomerByName(
-            @PathVariable("name") String name
-    ){
-        return ;
-    }*/
-
     @PostMapping("/")
     public CustomerResponseDTO postCustomer(
            @Valid @RequestBody CustomerCreateDTO customer
     ){
         return this.customerService.postCustomer(customer);
     }
+
     /*
     @PutMapping("/{id}")
     public CustomerResponseDTO updateCustomer(
@@ -59,10 +53,12 @@ public class CustomerController {
 
     @DeleteMapping("/{id}")
     public void deleteCustomer(
-            Long id
+            @PathVariable("id") Long id
     ){
         this.customerService.deleteCustomer(id);
     }
+
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationException(

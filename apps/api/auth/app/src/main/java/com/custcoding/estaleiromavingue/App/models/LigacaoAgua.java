@@ -20,7 +20,7 @@ public class LigacaoAgua {
     
     @ManyToOne
     @JoinColumn(name = "id_consumidor", nullable = false)
-    private ConsumidorAgua consumidor;
+    private CustomerWater consumidor;
 
     @ManyToOne
     @JoinColumn(name = "id_funcionario", nullable = false)

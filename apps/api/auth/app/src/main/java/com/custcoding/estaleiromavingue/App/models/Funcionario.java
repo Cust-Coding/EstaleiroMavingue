@@ -25,5 +25,5 @@ public class Funcionario {
      
     @ManyToOne
     @JoinColumn(name = "id_proprietario", nullable = false)
-    private Proprietario proprietario;
+    private Owner owner;
 }

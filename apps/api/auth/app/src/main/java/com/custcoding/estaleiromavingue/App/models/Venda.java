@@ -39,7 +39,7 @@ public class Venda {
     
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
-    private CustomerProduto cliente;
+    private CustomerProduct cliente;
 
     
     @ManyToOne

@@ -1,27 +1,39 @@
 package com.custcoding.estaleiromavingue.App.models;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "consumidores_agua")
-public class ConsumidorAgua {
-  @Id
+@Table(name = "customer_water")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CustomerWater {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String nome;
-
+    private String name;
     @Column(nullable = false, length = 20)
-    private String telefone;
+    private String phone;
+    @Column(nullable = false)
+    private String email;
 
     @Column(name = "nr_casa", nullable = false, length = 20)
-    private String nrCasa;
-
-    @Column(name = "palavra_passe", nullable = false)
-    private String palavraPasse;
+    private String houseNR;
     
     @ManyToOne
-    @JoinColumn(name = "id_zona", nullable = false)
-    private Zona zona;
+    @JoinColumn(name = "id_zona", nullable = true)
+    private Adress adressId;
+
+    @Column(name = "data_criacao", nullable = true)
+    @CreationTimestamp
+    private LocalDateTime created;
   
 }

@@ -58,9 +58,9 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public void deleteProduct(
-            Long id
+           @PathVariable("id") Long id
     ){
-        productService.deleteProduct(id);
+        this.productService.deleteProduct(id);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
