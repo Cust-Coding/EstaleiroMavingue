@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "t_product")
+@Table(name = "t_customer_product")
 public class CustomerProduto {
 
     @Id
@@ -20,16 +20,16 @@ public class CustomerProduto {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String nome;
+    private String name;
 
     @Column( length = 20)
-    private String telefone;
+    private String phone;
 
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
     @Column(name = "data_criacao", nullable = true)
     @CreationTimestamp
-    private LocalDateTime dataCriacao;
+    private LocalDateTime created;
 
 }
