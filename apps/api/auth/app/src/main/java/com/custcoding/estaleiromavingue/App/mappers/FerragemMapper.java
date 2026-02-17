@@ -32,7 +32,7 @@ public class FerragemMapper {
                 dto.getId(),
                 dto.getName(),
                 dto.getBairro(),
-                dto.getOwner().getNome(),
+                dto.getOwner().getEmail(),
                 dto.getCreated()
         );
     }

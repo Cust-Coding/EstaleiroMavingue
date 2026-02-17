@@ -1,15 +1,13 @@
 package com.custcoding.estaleiromavingue.App.controllers;
 
-import com.custcoding.estaleiromavingue.App.dtos.ferragem.FerragemCreateDTO;
-import com.custcoding.estaleiromavingue.App.dtos.ferragem.FerragemResponseDTO;
-import com.custcoding.estaleiromavingue.App.models.Ferragem;
-import com.custcoding.estaleiromavingue.App.services.FerragemService;
+
+import com.custcoding.estaleiromavingue.App.dtos.owner.OwnerCreateDTO;
+import com.custcoding.estaleiromavingue.App.dtos.owner.OwnerResponseDTO;
+import com.custcoding.estaleiromavingue.App.services.OwnerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -18,52 +16,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@AllArgsConstructor
-@RequestMapping("/api/ferragem")
 @RestController
-public class FerragemController {
+@AllArgsConstructor
+@RequestMapping("/api/owner")
+public class OwnerController {
 
-    private final FerragemService ferragemService;
+    private final OwnerService ownerService;
+
 
     @GetMapping("/")
-    public List<FerragemResponseDTO> getFerragens(){
-        return this.ferragemService.getFerragens();
+    public List<OwnerResponseDTO> getOwners(){
+        return this.ownerService.getOwners();
     }
 
     @GetMapping("/{id}")
-    public FerragemResponseDTO getFerragemById(
+    public OwnerResponseDTO getOwnerById(
             @PathVariable("id") Long id
     ){
-        return this.ferragemService.getFerragemById(id);
+        return this.ownerService.getOwnerById(id);
     }
 
     @PostMapping("/")
-    public FerragemResponseDTO postFerragem(
-            @Valid @RequestBody FerragemCreateDTO ferragem
+    public OwnerResponseDTO postOwner(
+            @Valid @RequestBody OwnerCreateDTO owner
     ){
-        return this.ferragemService.postFerragem(ferragem);
+        return this.ownerService.postOwner(owner);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFerragem(
+    public void deleteOwner(
             @PathVariable("id") Long id
     ){
-        this.ferragemService.deleteFerragem(id);
-
+        this.ownerService.deleteOwner(id);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handeMethodException(
+    public ResponseEntity<?> handleValidationException(
             MethodArgumentNotValidException exception
     ){
         Map<String, String> errors = new HashMap<>();
         exception.getBindingResult().getAllErrors()
-                .forEach(error ->{
+                .forEach(error -> {
                     var fieldName = ((FieldError) error).getField();
                     var errorMessage = error.getDefaultMessage();
                     errors.put(fieldName,errorMessage);
                 });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
 
 }

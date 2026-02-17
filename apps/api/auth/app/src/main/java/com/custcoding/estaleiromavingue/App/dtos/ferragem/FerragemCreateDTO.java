@@ -12,6 +12,7 @@ public record FerragemCreateDTO(
     @NotBlank(message = "bairro needs a value")
     String bairro,
 
+    @NotNull(message = "Please provide a owner ID")
     Long ownerId
 ) {
 }

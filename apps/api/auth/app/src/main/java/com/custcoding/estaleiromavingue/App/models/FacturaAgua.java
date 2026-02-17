@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "facturas_agua")
 public class FacturaAgua {
    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
