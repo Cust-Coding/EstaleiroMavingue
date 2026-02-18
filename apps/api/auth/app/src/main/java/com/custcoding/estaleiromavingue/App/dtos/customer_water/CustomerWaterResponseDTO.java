@@ -10,7 +10,8 @@ public record CustomerWaterResponseDTO(
         String phone,
         String email,
         String houseNR,
-        String adress,
+        String adressName,
+        String bairro,
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         LocalDateTime created
 ) {

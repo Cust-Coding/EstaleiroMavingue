@@ -5,7 +5,7 @@ public record AdressResponseDTO(
         Long id,
         String name,
         String bairro,
-        String ferragem
+        String ferragemName
 
 ) {
 }

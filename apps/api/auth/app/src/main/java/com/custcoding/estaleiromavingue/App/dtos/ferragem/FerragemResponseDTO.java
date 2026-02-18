@@ -9,7 +9,7 @@ public record FerragemResponseDTO(
     Long id,
     String name,
     String bairro,
-    String owner,
+    Long ownerId,
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     LocalDateTime created

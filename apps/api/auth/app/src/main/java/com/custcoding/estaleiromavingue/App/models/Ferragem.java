@@ -26,7 +26,7 @@ public class Ferragem {
     @Column(nullable = false, length = 100)
     private String bairro;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_proprietario", nullable = false)
     private Owner owner;
 

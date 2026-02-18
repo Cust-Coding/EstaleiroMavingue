@@ -1,11 +1,49 @@
 package com.custcoding.estaleiromavingue.App.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.custcoding.estaleiromavingue.App.dtos.customer_water.CustomerWaterCreateDTO;
+import com.custcoding.estaleiromavingue.App.dtos.customer_water.CustomerWaterResponseDTO;
+import com.custcoding.estaleiromavingue.App.services.CustomerWaterService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/customer-water")
 public class CustomerWaterController {
+
+
+    private final CustomerWaterService customerWaterService;
+
+    @GetMapping("/")
+    public List<CustomerWaterResponseDTO> getCustomers(){
+        return customerWaterService.getCustomers();
+    }
+
+    @GetMapping("/{id}")
+    public CustomerWaterResponseDTO getCustomerById(
+            @PathVariable("id") Long id
+    ){
+        return customerWaterService.getCustomerById(id);
+    }
+
+
+    @PostMapping("/")
+    public CustomerWaterResponseDTO postCustomer(
+            @Valid @RequestBody CustomerWaterCreateDTO customer
+    ){
+        return customerWaterService.postCustomer(customer);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteCustomer(
+            @PathVariable("id") Long id
+    ){
+        customerWaterService.deleteCustomer(id);
+    }
 
 
 }

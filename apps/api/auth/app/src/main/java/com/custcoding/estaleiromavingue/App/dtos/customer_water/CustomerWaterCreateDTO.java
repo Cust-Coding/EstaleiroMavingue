@@ -1,6 +1,7 @@
 package com.custcoding.estaleiromavingue.App.dtos.customer_water;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -16,6 +17,10 @@ public record CustomerWaterCreateDTO(
         @NotBlank(message = "Please Provide a house number")
         @JsonProperty("house_nr")
         String houseNR,
+
+        @Email
+        @NotNull
+        String email,
 
         @NotNull(message = "Please provide a Adress Id")
         @JsonProperty("adress_id")
