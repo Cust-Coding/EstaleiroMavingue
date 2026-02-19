@@ -2,9 +2,11 @@ package com.custcoding.estaleiromavingue.App.controllers;
 
 import com.custcoding.estaleiromavingue.App.dtos.customer_water.CustomerWaterCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.customer_water.CustomerWaterResponseDTO;
+import com.custcoding.estaleiromavingue.App.models.CustomerWater;
 import com.custcoding.estaleiromavingue.App.services.CustomerWaterService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,6 +37,16 @@ public class CustomerWaterController {
             @Valid @RequestBody CustomerWaterCreateDTO customer
     ){
         return customerWaterService.postCustomer(customer);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CustomerWaterResponseDTO> updateCustomer(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody CustomerWater customerDetails
+    ){
+        CustomerWaterResponseDTO customer = customerWaterService.updateCustomer(id,customerDetails);
+
+        return ResponseEntity.ok(customer);
     }
 
 

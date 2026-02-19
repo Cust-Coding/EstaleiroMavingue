@@ -3,6 +3,7 @@ package com.custcoding.estaleiromavingue.App.controllers;
 
 import com.custcoding.estaleiromavingue.App.dtos.customer.CustomerCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.customer.CustomerResponseDTO;
+import com.custcoding.estaleiromavingue.App.models.CustomerProduct;
 import com.custcoding.estaleiromavingue.App.services.CustomerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -43,13 +44,15 @@ public class CustomerController {
         return this.customerService.postCustomer(customer);
     }
 
-    /*
+
     @PutMapping("/{id}")
-    public CustomerResponseDTO updateCustomer(
-            @PathVariable("id") Long id
+    public ResponseEntity<CustomerResponseDTO>  updateCustomer(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody CustomerProduct customerDetails
     ){
-        return ;
-    }*/
+        CustomerResponseDTO savedCustomer = customerService.updateCustomer(id, customerDetails);
+        return ResponseEntity.ok(savedCustomer);
+    }
 
     @DeleteMapping("/{id}")
     public void deleteCustomer(

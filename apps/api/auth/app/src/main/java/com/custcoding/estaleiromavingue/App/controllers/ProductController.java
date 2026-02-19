@@ -2,6 +2,7 @@ package com.custcoding.estaleiromavingue.App.controllers;
 
 import com.custcoding.estaleiromavingue.App.dtos.product.ProductCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.product.ProductResponseDTO;
+import com.custcoding.estaleiromavingue.App.models.Product;
 import com.custcoding.estaleiromavingue.App.services.ProductService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -48,13 +49,15 @@ public class ProductController {
     ){
             return this.productService.postProduct(product);
     }
-    /*
+
     @PutMapping("/{id}")
-    public CustomerResponseDTO updateCustomer(
-            @PathVariable("id") Long id
+    public ResponseEntity<ProductResponseDTO> updateProduct(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody Product productDetails
     ){
-        return ;
-    }*/
+        ProductResponseDTO product = productService.updateProduct(id, productDetails);
+        return ResponseEntity.ok(product);
+    }
 
     @DeleteMapping("/{id}")
     public void deleteProduct(

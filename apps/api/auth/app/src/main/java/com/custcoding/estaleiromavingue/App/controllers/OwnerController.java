@@ -3,6 +3,7 @@ package com.custcoding.estaleiromavingue.App.controllers;
 
 import com.custcoding.estaleiromavingue.App.dtos.owner.OwnerCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.owner.OwnerResponseDTO;
+import com.custcoding.estaleiromavingue.App.models.Owner;
 import com.custcoding.estaleiromavingue.App.services.OwnerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -42,6 +43,16 @@ public class OwnerController {
     ){
         return this.ownerService.postOwner(owner);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<OwnerResponseDTO> updateOwner(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody Owner ownerDetails
+    ){
+        var updatedOwner = ownerService.updateOwner(id, ownerDetails);
+        return ResponseEntity.ok(updatedOwner);
+    }
+
 
     @DeleteMapping("/{id}")
     public void deleteOwner(

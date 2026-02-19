@@ -4,6 +4,7 @@ package com.custcoding.estaleiromavingue.App.services;
 import com.custcoding.estaleiromavingue.App.dtos.customer.CustomerCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.customer.CustomerResponseDTO;
 import com.custcoding.estaleiromavingue.App.mappers.CustomerMapper;
+import com.custcoding.estaleiromavingue.App.models.CustomerProduct;
 import com.custcoding.estaleiromavingue.App.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,12 +50,24 @@ public class CustomerService {
         return customerMapper.toCustomerResponseDTO(savedCustomer);
     }
 
-    /*public CustomerResponseDTO updateCustomer(
-            Long id
+
+    public CustomerResponseDTO updateCustomer(
+            Long id,
+            CustomerProduct customerDetails
     ){
-        return customerRepository.
+        var updatedCustomer = customerRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND
+                ));
+        updatedCustomer.setName(customerDetails.getName());
+        updatedCustomer.setPhone(customerDetails.getPhone());
+        updatedCustomer.setEmail(customerDetails.getEmail());
+
+        var savedCustomer = customerRepository.save(updatedCustomer);
+        return customerMapper.toCustomerResponseDTO(savedCustomer);
     }
-    */
+
+
 
     public void deleteCustomer(
             Long id

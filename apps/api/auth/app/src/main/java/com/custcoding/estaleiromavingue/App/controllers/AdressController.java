@@ -3,6 +3,7 @@ package com.custcoding.estaleiromavingue.App.controllers;
 
 import com.custcoding.estaleiromavingue.App.dtos.adress.AdressCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.adress.AdressResponseDTO;
+import com.custcoding.estaleiromavingue.App.models.Adress;
 import com.custcoding.estaleiromavingue.App.services.AdressService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -42,6 +43,16 @@ public class AdressController {
     ){
         return this.adressService.postAddress(adress);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AdressResponseDTO> updateAddress(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody Adress adressDetails
+    ){
+        AdressResponseDTO updatedAddress = adressService.updateAddress(id,adressDetails);
+        return ResponseEntity.ok(updatedAddress);
+    }
+
 
     @DeleteMapping("/{id}")
     public void deleteAddress(

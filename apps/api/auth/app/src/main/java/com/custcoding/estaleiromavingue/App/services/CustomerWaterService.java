@@ -3,6 +3,7 @@ package com.custcoding.estaleiromavingue.App.services;
 import com.custcoding.estaleiromavingue.App.dtos.customer_water.CustomerWaterCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.customer_water.CustomerWaterResponseDTO;
 import com.custcoding.estaleiromavingue.App.mappers.CustomerWaterMapper;
+import com.custcoding.estaleiromavingue.App.models.CustomerWater;
 import com.custcoding.estaleiromavingue.App.repositories.CustomerWaterRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,6 +47,28 @@ public class CustomerWaterService {
         var customer = customerWaterMapper.toCustomerWaterDTO(request);
         var savedCustomer = customerWaterRepository.save(customer);
         return customerWaterMapper.toCustomerResponseDTO(savedCustomer);
+    }
+
+    public CustomerWaterResponseDTO updateCustomer(
+            Long id,
+            CustomerWater customerDetails
+    ){
+        var updatedCustomer = customerWaterRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND
+                ));
+
+        updatedCustomer.setName(customerDetails.getName());
+        updatedCustomer.setPhone(customerDetails.getPhone());
+        updatedCustomer.setEmail(customerDetails.getEmail());
+        updatedCustomer.setHouseNR(customerDetails.getHouseNR());
+        updatedCustomer.setAdressId(customerDetails.getAdressId());
+
+        var savedCustomer = customerWaterRepository.save(updatedCustomer);
+
+        return customerWaterMapper.toCustomerResponseDTO(savedCustomer);
+
+
     }
 
 

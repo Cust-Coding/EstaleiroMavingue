@@ -1,9 +1,11 @@
 package com.custcoding.estaleiromavingue.App.services;
 
 
+import com.custcoding.estaleiromavingue.App.dtos.customer.CustomerResponseDTO;
 import com.custcoding.estaleiromavingue.App.dtos.ferragem.FerragemCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.ferragem.FerragemResponseDTO;
 import com.custcoding.estaleiromavingue.App.mappers.FerragemMapper;
+import com.custcoding.estaleiromavingue.App.models.CustomerProduct;
 import com.custcoding.estaleiromavingue.App.models.Ferragem;
 import com.custcoding.estaleiromavingue.App.repositories.FerragemRepository;
 import lombok.AllArgsConstructor;
@@ -47,6 +49,22 @@ public class FerragemService {
     ){
         var ferragem = ferragemMapper.toFerragemDTO(request);
         var savedFerragem = ferragemRepository.save(ferragem);
+        return ferragemMapper.toFerragemResponseDTO(savedFerragem);
+    }
+
+    public FerragemResponseDTO updateFerragem(
+            Long id,
+            Ferragem ferragemDetails
+    ){
+        var updatedFerragem = ferragemRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND
+                ));
+        updatedFerragem.setName(ferragemDetails.getName());
+        updatedFerragem.setBairro(ferragemDetails.getBairro());
+        updatedFerragem.setOwner(ferragemDetails.getOwner());
+
+        var savedFerragem = ferragemRepository.save(updatedFerragem);
         return ferragemMapper.toFerragemResponseDTO(savedFerragem);
     }
 

@@ -4,6 +4,7 @@ package com.custcoding.estaleiromavingue.App.services;
 import com.custcoding.estaleiromavingue.App.dtos.owner.OwnerCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.owner.OwnerResponseDTO;
 import com.custcoding.estaleiromavingue.App.mappers.OwnerMapper;
+import com.custcoding.estaleiromavingue.App.models.Owner;
 import com.custcoding.estaleiromavingue.App.repositories.OwnerRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,6 +49,24 @@ public class OwnerService {
         var owner = ownerMapper.toOwnerDTO(request);
         var savedOwner = ownerRepository.save(owner);
         return ownerMapper.toOwnerResponseDTO(savedOwner);
+    }
+
+    public OwnerResponseDTO updateOwner(
+            Long id,
+            Owner ownerDetails
+    ){
+        var updatedOwner = ownerRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND
+                ));
+        updatedOwner.setName(ownerDetails.getName());
+        updatedOwner.setPhone(ownerDetails.getPhone());
+        updatedOwner.setEmail(ownerDetails.getEmail());
+        updatedOwner.setNuit(ownerDetails.getNuit());
+
+        var savedOwner = ownerRepository.save(updatedOwner);
+        return ownerMapper.toOwnerResponseDTO(savedOwner);
+
     }
 
 

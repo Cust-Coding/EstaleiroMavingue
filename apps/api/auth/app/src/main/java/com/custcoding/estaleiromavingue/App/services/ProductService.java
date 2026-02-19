@@ -4,6 +4,7 @@ package com.custcoding.estaleiromavingue.App.services;
 import com.custcoding.estaleiromavingue.App.dtos.product.ProductCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.product.ProductResponseDTO;
 import com.custcoding.estaleiromavingue.App.mappers.ProductMapper;
+import com.custcoding.estaleiromavingue.App.models.Product;
 import com.custcoding.estaleiromavingue.App.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -47,6 +48,23 @@ public class ProductService {
     ){
         var product = productMapper.toProductDTO(request);
         var savedProduct = productRepository.save(product);
+        return productMapper.toProductResponseDTO(savedProduct);
+    }
+
+    public ProductResponseDTO updateProduct(
+            Long id,
+            Product productDetails
+    ){
+        var updatedProduct = productRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND
+                ));
+        updatedProduct.setName(productDetails.getName());
+        updatedProduct.setDescription(productDetails.getDescription());
+        updatedProduct.setPrice(productDetails.getPrice());
+
+        var savedProduct = productRepository.save(updatedProduct);
+
         return productMapper.toProductResponseDTO(savedProduct);
     }
 

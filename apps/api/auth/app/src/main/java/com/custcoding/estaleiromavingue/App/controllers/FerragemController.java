@@ -44,6 +44,17 @@ public class FerragemController {
         return this.ferragemService.postFerragem(ferragem);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<FerragemResponseDTO> updateFerragem(
+            @PathVariable("id") Long id,
+            @Valid @RequestBody Ferragem ferragemDetails
+    ){
+        FerragemResponseDTO updatedFerragem = ferragemService.updateFerragem(id, ferragemDetails);
+
+        return ResponseEntity.ok(updatedFerragem);
+    }
+
+
     @DeleteMapping("/{id}")
     public void deleteFerragem(
             @PathVariable("id") Long id

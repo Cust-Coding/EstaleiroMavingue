@@ -4,6 +4,7 @@ package com.custcoding.estaleiromavingue.App.services;
 import com.custcoding.estaleiromavingue.App.dtos.adress.AdressCreateDTO;
 import com.custcoding.estaleiromavingue.App.dtos.adress.AdressResponseDTO;
 import com.custcoding.estaleiromavingue.App.mappers.AdressMapper;
+import com.custcoding.estaleiromavingue.App.models.Adress;
 import com.custcoding.estaleiromavingue.App.repositories.AdressRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,6 +47,25 @@ public class AdressService {
         var address = adressMapper.toAdressDTO(request);
         var savedAdress = adressRepository.save(address);
         return adressMapper.toAdressResponseDTO(savedAdress);
+    }
+
+
+
+    public AdressResponseDTO updateAddress(
+            Long id,
+            Adress addressDetails
+    ){
+        var updatedAddress = adressRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND
+                ));
+        updatedAddress.setName(addressDetails.getName());
+        updatedAddress.setBairro(addressDetails.getBairro());
+        updatedAddress.setFerragem(addressDetails.getFerragem());
+
+        var savedAdress = adressRepository.save(updatedAddress);
+        return adressMapper.toAdressResponseDTO(savedAdress);
+
     }
 
     public void deleteAdress(
