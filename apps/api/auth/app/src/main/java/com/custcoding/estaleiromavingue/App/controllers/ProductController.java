@@ -24,7 +24,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<ProductResponseDTO> getProducts(){
         return this.productService.getProducts() ;
     }
@@ -43,7 +43,7 @@ public class ProductController {
         return ;
     }*/
 
-    @PostMapping("/")
+    @PostMapping
     public ProductResponseDTO postProduct(
            @Valid @RequestBody ProductCreateDTO product
     ){

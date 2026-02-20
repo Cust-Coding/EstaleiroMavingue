@@ -25,7 +25,7 @@ public class FerragemController {
 
     private final FerragemService ferragemService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<FerragemResponseDTO> getFerragens(){
         return this.ferragemService.getFerragens();
     }
@@ -37,7 +37,7 @@ public class FerragemController {
         return this.ferragemService.getFerragemById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public FerragemResponseDTO postFerragem(
             @Valid @RequestBody FerragemCreateDTO ferragem
     ){

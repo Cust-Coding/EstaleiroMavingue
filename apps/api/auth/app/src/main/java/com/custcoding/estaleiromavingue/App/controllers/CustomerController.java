@@ -25,7 +25,7 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<CustomerResponseDTO> getCustomers(){
         return this.customerService.getCustomers() ;
     }
@@ -37,7 +37,7 @@ public class CustomerController {
         return this.customerService.getCustomerById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public CustomerResponseDTO postCustomer(
            @Valid @RequestBody CustomerCreateDTO customer
     ){

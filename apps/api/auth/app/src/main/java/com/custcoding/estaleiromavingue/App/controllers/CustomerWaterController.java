@@ -19,7 +19,7 @@ public class CustomerWaterController {
 
     private final CustomerWaterService customerWaterService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<CustomerWaterResponseDTO> getCustomers(){
         return customerWaterService.getCustomers();
     }
@@ -32,7 +32,7 @@ public class CustomerWaterController {
     }
 
 
-    @PostMapping("/")
+    @PostMapping
     public CustomerWaterResponseDTO postCustomer(
             @Valid @RequestBody CustomerWaterCreateDTO customer
     ){

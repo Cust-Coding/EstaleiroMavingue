@@ -25,7 +25,7 @@ public class AdressController {
     private final AdressService adressService;
 
 
-    @GetMapping("/")
+    @GetMapping
     public List<AdressResponseDTO> getAddresses(){
         return this.adressService.getAddresses();
     }
@@ -37,7 +37,7 @@ public class AdressController {
         return this.adressService.getAddressById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public AdressResponseDTO postAddress(
             @Valid @RequestBody AdressCreateDTO adress
     ){

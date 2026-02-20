@@ -25,14 +25,25 @@ public class User implements UserDetails{
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+
+    @Column(
+            nullable = false,
+            unique = true,
+            length = 100
+    )
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private Roles role;
+
+    @Column(nullable = false)
 
     private Boolean is_active = true;
 
+    @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime created;
 

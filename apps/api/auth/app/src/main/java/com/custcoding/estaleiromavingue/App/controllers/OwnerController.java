@@ -25,7 +25,7 @@ public class OwnerController {
     private final OwnerService ownerService;
 
 
-    @GetMapping("/")
+    @GetMapping
     public List<OwnerResponseDTO> getOwners(){
         return this.ownerService.getOwners();
     }
@@ -37,7 +37,7 @@ public class OwnerController {
         return this.ownerService.getOwnerById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public OwnerResponseDTO postOwner(
             @Valid @RequestBody OwnerCreateDTO owner
     ){
