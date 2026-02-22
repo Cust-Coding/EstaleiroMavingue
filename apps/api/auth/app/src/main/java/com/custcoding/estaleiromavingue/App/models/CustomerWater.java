@@ -32,7 +32,7 @@ public class CustomerWater {
     @JoinColumn(name = "id_zona", nullable = true)
     private Adress adressId;
 
-    @Column(name = "data_criacao", nullable = true)
+    @Column(name = "data_criacao", nullable = true ,  updatable = false)
     @CreationTimestamp
     private LocalDateTime created;
 

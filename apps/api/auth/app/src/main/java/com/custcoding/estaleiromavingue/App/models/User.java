@@ -43,7 +43,7 @@ public class User implements UserDetails{
 
     private Boolean is_active = true;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime created;
 
@@ -68,6 +68,13 @@ public class User implements UserDetails{
             cascade = CascadeType.ALL
     )
     private Owner owner;
+
+
+    @OneToOne(
+            mappedBy = "user",
+            cascade = CascadeType.ALL
+    )
+    private Staff staff;
 
 
 

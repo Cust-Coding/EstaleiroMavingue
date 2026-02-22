@@ -43,5 +43,5 @@ public class Venda {
     
     @ManyToOne
     @JoinColumn(name = "id_funcionario", nullable = false)
-    private Stuff stuff;
+    private Staff staff;
 }

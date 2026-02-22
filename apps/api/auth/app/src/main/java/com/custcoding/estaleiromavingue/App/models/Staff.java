@@ -1,20 +1,20 @@
 package com.custcoding.estaleiromavingue.App.models;
 
+import com.custcoding.estaleiromavingue.App.models.status.StaffRoles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "proprietario")
-public class Owner {
+@Data
+@Table(name = "funcionario")
+public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,25 +23,22 @@ public class Owner {
     @Column(nullable = false, length = 100)
     private String name;
 
+    @Column(nullable = false, length = 50)
+    private StaffRoles role;
+
     @Column(nullable = false, length = 20)
     private String phone;
 
-    @Column(nullable = false, unique = true, length = 100)
-    private String email;
-
-    @Column(nullable = false, unique = true, length = 20)
-    private String nuit;
-
-    @Column(nullable = false, name ="created_date" ,  updatable = false )
     @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private LocalDateTime created;
 
+    @ManyToOne
+    @JoinColumn(name = "id_ferragem", nullable = false)
+    private Ferragem ferragem;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-
-
-    
 }

@@ -28,7 +28,7 @@ public class CustomerProduct {
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "data_criacao", nullable = true)
+    @Column(name = "data_criacao", nullable = true,  updatable = false  )
     @CreationTimestamp
     private LocalDateTime created;
 

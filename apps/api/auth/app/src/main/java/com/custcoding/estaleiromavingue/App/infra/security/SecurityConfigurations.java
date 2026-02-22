@@ -101,6 +101,20 @@ public class SecurityConfigurations {
                                 "ADMIN", "OWNER")
                         .requestMatchers(HttpMethod.DELETE, "/api/owner/**").hasRole("ADMIN")
 
+                        // Staff
+                        .requestMatchers(HttpMethod.GET, "/api/staff/**").hasAnyRole(
+                                "ADMIN", "OWNER"
+                        )
+                        .requestMatchers(HttpMethod.POST, "/api/staff").hasAnyRole(
+                                "ADMIN","OWNER"
+                        )
+                        .requestMatchers(HttpMethod.PUT, "/api/staff/**").hasAnyRole(
+                                "ADMIN","OWNER"
+                        )
+                        .requestMatchers(HttpMethod.DELETE,"/api/staff/**").hasAnyRole(
+                                "ADMIN", "OWNER"
+                        )
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
