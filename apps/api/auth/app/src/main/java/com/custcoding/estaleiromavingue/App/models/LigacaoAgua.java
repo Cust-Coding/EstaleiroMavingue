@@ -24,5 +24,5 @@ public class LigacaoAgua {
 
     @ManyToOne
     @JoinColumn(name = "id_funcionario", nullable = false)
-    private Funcionario funcionario;
+    private Stuff stuff;
 }

@@ -35,5 +35,10 @@ public class CustomerWater {
     @Column(name = "data_criacao", nullable = true)
     @CreationTimestamp
     private LocalDateTime created;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
   
 }

@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 public record UserResponseDTO(
         String id,
         String username,
-        String password,
         Roles role,
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         LocalDateTime created

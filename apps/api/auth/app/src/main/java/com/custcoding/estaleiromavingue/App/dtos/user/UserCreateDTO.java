@@ -8,9 +8,7 @@ public record UserCreateDTO(
         @NotBlank(message = "username can't be blank")
         String username,
         @NotBlank(message = "provide a password")
-        String password,
-
-        Roles role
+        String password
 
 ) {
 }

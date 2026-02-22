@@ -7,6 +7,7 @@ import com.custcoding.estaleiromavingue.App.dtos.user.UserResponseDTO;
 import com.custcoding.estaleiromavingue.App.exception.UsernameAlreadyExistsException;
 
 import com.custcoding.estaleiromavingue.App.models.User;
+import com.custcoding.estaleiromavingue.App.models.status.Roles;
 import com.custcoding.estaleiromavingue.App.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 
@@ -46,7 +47,7 @@ public class UserService {
         User user = new User();
         user.setUsername(data.username());
         user.setPassword(password);
-        user.setRole(data.role());
+        user.setRole(Roles.CUSTOMER);
 
 
         var savedUser = userRepository.save(user);
@@ -54,7 +55,6 @@ public class UserService {
         return new UserResponseDTO(
                 savedUser.getId(),
                 savedUser.getUsername(),
-                savedUser.getPassword(),
                 savedUser.getRole(),
                 savedUser.getCreated()
         );

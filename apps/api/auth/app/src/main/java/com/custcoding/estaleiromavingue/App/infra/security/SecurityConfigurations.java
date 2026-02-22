@@ -63,9 +63,9 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.GET, "/api/customer/{id}").hasAnyRole(
                                 "ADMIN", "OWNER", "STUFF")
                         .requestMatchers(HttpMethod.POST, "/api/customer").hasAnyRole(
-                                "ADMIN", "OWNER", "STUFF")
+                                "ADMIN", "OWNER", "STUFF", "CUSTOMER")
                         .requestMatchers(HttpMethod.PUT, "/api/customer/**").hasAnyRole(
-                                "ADMIN", "OWNER", "STUFF")
+                                "ADMIN", "OWNER", "STUFF", "CUSTOMER")
                         .requestMatchers(HttpMethod.DELETE, "/api/customer/**").hasRole(
                                 "ADMIN")
 
@@ -83,8 +83,7 @@ public class SecurityConfigurations {
                                 "ADMIN")
 
                         // Ferragem
-                        .requestMatchers(HttpMethod.GET, "/api/ferragem/**").hasAnyRole(
-                                "ADMIN", "OWNER", "STUFF", "CUSTOMER", "CUSTOMER_WATER")
+                        .requestMatchers(HttpMethod.GET, "/api/ferragem/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/ferragem").hasAnyRole(
                                 "ADMIN", "OWNER")
                         .requestMatchers(HttpMethod.PUT, "/api/ferragem/**").hasAnyRole(

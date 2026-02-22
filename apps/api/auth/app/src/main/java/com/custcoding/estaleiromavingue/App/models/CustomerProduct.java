@@ -32,4 +32,11 @@ public class CustomerProduct {
     @CreationTimestamp
     private LocalDateTime created;
 
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+
 }

@@ -48,6 +48,31 @@ public class User implements UserDetails{
     private LocalDateTime created;
 
 
+
+    @OneToOne(
+            mappedBy = "user",
+            cascade = CascadeType.ALL
+    )
+    private CustomerProduct customerProduct;
+
+
+    @OneToOne(
+            mappedBy = "user",
+            cascade = CascadeType.ALL
+    )
+    private CustomerWater customerWater;
+
+
+    @OneToOne(
+            mappedBy = "user",
+            cascade = CascadeType.ALL
+    )
+    private Owner owner;
+
+
+
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.role == Roles.ADMIN){
