@@ -38,7 +38,7 @@ public class Owner {
 
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
 
 

@@ -37,7 +37,7 @@ public class CustomerWater {
     private LocalDateTime created;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
 
   

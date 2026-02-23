@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "funcionario")
+@Table(name = "staff")
 public class Staff {
 
     @Id
@@ -30,7 +30,7 @@ public class Staff {
     private String phone;
 
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false, name = "created_date")
     private LocalDateTime created;
 
     @ManyToOne
@@ -38,7 +38,7 @@ public class Staff {
     private Ferragem ferragem;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id_user")
     private User user;
 
 }
