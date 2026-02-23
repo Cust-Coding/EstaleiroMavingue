@@ -31,17 +31,18 @@ public class OwnerController {
     }
 
     @GetMapping("/{id}")
-    public OwnerResponseDTO getOwnerById(
+    public ResponseEntity<OwnerResponseDTO> getOwnerById(
             @PathVariable("id") Long id
     ){
-        return this.ownerService.getOwnerById(id);
+        return ResponseEntity.ok(ownerService.getOwnerById(id));
     }
 
     @PostMapping
-    public OwnerResponseDTO postOwner(
+    public ResponseEntity<OwnerResponseDTO> postOwner(
             @Valid @RequestBody OwnerCreateDTO owner
     ){
-        return this.ownerService.postOwner(owner);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ownerService.postOwner(owner));
     }
 
     @PutMapping("/{id}")
@@ -49,16 +50,16 @@ public class OwnerController {
             @PathVariable("id") Long id,
             @Valid @RequestBody Owner ownerDetails
     ){
-        var updatedOwner = ownerService.updateOwner(id, ownerDetails);
-        return ResponseEntity.ok(updatedOwner);
+        return ResponseEntity.ok(ownerService.updateOwner(id, ownerDetails));
     }
 
 
     @DeleteMapping("/{id}")
-    public void deleteOwner(
+    public ResponseEntity<Void> deleteOwner(
             @PathVariable("id") Long id
     ){
-        this.ownerService.deleteOwner(id);
+        ownerService.deleteOwner(id);
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

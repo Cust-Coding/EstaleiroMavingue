@@ -31,17 +31,17 @@ public class AdressController {
     }
 
     @GetMapping("/{id}")
-    public AdressResponseDTO getAddressById(
+    public ResponseEntity<AdressResponseDTO> getAddressById(
             @PathVariable("id") Long id
     ){
-        return this.adressService.getAddressById(id);
+        return ResponseEntity.ok(adressService.getAddressById(id));
     }
 
     @PostMapping
-    public AdressResponseDTO postAddress(
+    public ResponseEntity<AdressResponseDTO> postAddress(
             @Valid @RequestBody AdressCreateDTO adress
     ){
-        return this.adressService.postAddress(adress);
+        return ResponseEntity.status(HttpStatus.CREATED).body(adressService.postAddress(adress));
     }
 
     @PutMapping("/{id}")
@@ -49,16 +49,15 @@ public class AdressController {
             @PathVariable("id") Long id,
             @Valid @RequestBody Adress adressDetails
     ){
-        AdressResponseDTO updatedAddress = adressService.updateAddress(id,adressDetails);
-        return ResponseEntity.ok(updatedAddress);
+        return ResponseEntity.ok(adressService.updateAddress(id,adressDetails));
     }
 
-
     @DeleteMapping("/{id}")
-    public void deleteAddress(
+    public ResponseEntity<Void> deleteAddress(
             @PathVariable("id") Long id
     ){
-        this.adressService.deleteAdress(id);
+        adressService.deleteAdress(id);
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

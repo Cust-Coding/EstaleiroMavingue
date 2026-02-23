@@ -6,6 +6,7 @@ import com.custcoding.estaleiromavingue.App.models.CustomerWater;
 import com.custcoding.estaleiromavingue.App.services.CustomerWaterService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,18 +26,18 @@ public class CustomerWaterController {
     }
 
     @GetMapping("/{id}")
-    public CustomerWaterResponseDTO getCustomerById(
+    public ResponseEntity<CustomerWaterResponseDTO> getCustomerById(
             @PathVariable("id") Long id
     ){
-        return customerWaterService.getCustomerById(id);
+        return ResponseEntity.ok(customerWaterService.getCustomerById(id));
     }
 
-
     @PostMapping
-    public CustomerWaterResponseDTO postCustomer(
+    public ResponseEntity<CustomerWaterResponseDTO> postCustomer(
             @Valid @RequestBody CustomerWaterCreateDTO customer
     ){
-        return customerWaterService.postCustomer(customer);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(customerWaterService.postCustomer(customer));
     }
 
     @PutMapping("/{id}")
@@ -44,17 +45,16 @@ public class CustomerWaterController {
             @PathVariable("id") Long id,
             @Valid @RequestBody CustomerWater customerDetails
     ){
-        CustomerWaterResponseDTO customer = customerWaterService.updateCustomer(id,customerDetails);
 
-        return ResponseEntity.ok(customer);
+        return ResponseEntity.ok(customerWaterService.updateCustomer(id,customerDetails));
     }
 
-
     @DeleteMapping("/{id}")
-    public void deleteCustomer(
+    public ResponseEntity<Void> deleteCustomer(
             @PathVariable("id") Long id
     ){
         customerWaterService.deleteCustomer(id);
+        return ResponseEntity.noContent().build();
     }
 
 

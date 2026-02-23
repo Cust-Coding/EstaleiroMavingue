@@ -31,17 +31,18 @@ public class FerragemController {
     }
 
     @GetMapping("/{id}")
-    public FerragemResponseDTO getFerragemById(
+    public ResponseEntity<FerragemResponseDTO> getFerragemById(
             @PathVariable("id") Long id
     ){
-        return this.ferragemService.getFerragemById(id);
+        return ResponseEntity.ok(ferragemService.getFerragemById(id));
     }
 
     @PostMapping
-    public FerragemResponseDTO postFerragem(
+    public ResponseEntity<FerragemResponseDTO> postFerragem(
             @Valid @RequestBody FerragemCreateDTO ferragem
     ){
-        return this.ferragemService.postFerragem(ferragem);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ferragemService.postFerragem(ferragem));
     }
 
     @PutMapping("/{id}")
@@ -49,18 +50,17 @@ public class FerragemController {
             @PathVariable("id") Long id,
             @Valid @RequestBody Ferragem ferragemDetails
     ){
-        FerragemResponseDTO updatedFerragem = ferragemService.updateFerragem(id, ferragemDetails);
 
-        return ResponseEntity.ok(updatedFerragem);
+        return ResponseEntity.ok(ferragemService.updateFerragem(id, ferragemDetails));
     }
 
 
     @DeleteMapping("/{id}")
-    public void deleteFerragem(
+    public ResponseEntity<Void> deleteFerragem(
             @PathVariable("id") Long id
     ){
-        this.ferragemService.deleteFerragem(id);
-
+        ferragemService.deleteFerragem(id);
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

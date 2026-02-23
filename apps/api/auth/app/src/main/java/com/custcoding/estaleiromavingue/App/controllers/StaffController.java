@@ -7,6 +7,7 @@ import com.custcoding.estaleiromavingue.App.models.Staff;
 import com.custcoding.estaleiromavingue.App.services.StaffService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,34 +29,34 @@ public class StaffController {
 
 
     @GetMapping("/{id}")
-    public StaffResponseDTO getStaffById(
+    public ResponseEntity<StaffResponseDTO> getStaffById(
             @PathVariable("id") Long id
     ){
-        return staffService.getStaffById(id);
+        return ResponseEntity.ok(staffService.getStaffById(id));
     }
 
     @PostMapping
-    public StaffResponseDTO postStaff(
+    public ResponseEntity<StaffResponseDTO> postStaff(
             @Valid @RequestBody StaffCreateDTO staffDetails
     ){
-        return staffService.postStaff(staffDetails);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(staffService.postStaff(staffDetails));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<StaffResponseDTO> updateStaff(
             @PathVariable Long id,
             @Valid @RequestBody Staff staffDetails
-
     ){
-        StaffResponseDTO staff  = staffService.updateStaff(id, staffDetails);
-        return ResponseEntity.ok(staff);
+        return ResponseEntity.ok(staffService.updateStaff(id, staffDetails));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStaff(
+    public ResponseEntity<Void> deleteStaff(
             @PathVariable Long id
     ){
         staffService.getStaffById(id);
+        return ResponseEntity.noContent().build();
     }
 
 

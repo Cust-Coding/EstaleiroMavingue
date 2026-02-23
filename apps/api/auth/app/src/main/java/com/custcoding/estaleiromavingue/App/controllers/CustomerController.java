@@ -31,17 +31,18 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public CustomerResponseDTO getCustomerById(
+    public ResponseEntity<CustomerResponseDTO> getCustomerById(
             @PathVariable("id") Long id
     ){
-        return this.customerService.getCustomerById(id);
+        return ResponseEntity.ok(customerService.getCustomerById(id));
     }
 
     @PostMapping
-    public CustomerResponseDTO postCustomer(
+    public ResponseEntity<CustomerResponseDTO> postCustomer(
            @Valid @RequestBody CustomerCreateDTO customer
     ){
-        return this.customerService.postCustomer(customer);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(customerService.postCustomer(customer));
     }
 
 
@@ -50,17 +51,16 @@ public class CustomerController {
             @PathVariable("id") Long id,
             @Valid @RequestBody CustomerProduct customerDetails
     ){
-        CustomerResponseDTO savedCustomer = customerService.updateCustomer(id, customerDetails);
-        return ResponseEntity.ok(savedCustomer);
+        return ResponseEntity.ok(customerService.updateCustomer(id,customerDetails));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCustomer(
+    public ResponseEntity<Void> deleteCustomer(
             @PathVariable("id") Long id
     ){
-        this.customerService.deleteCustomer(id);
+        customerService.deleteCustomer(id);
+        return ResponseEntity.noContent().build();
     }
-
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

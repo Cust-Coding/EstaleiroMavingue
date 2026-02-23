@@ -30,10 +30,10 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ProductResponseDTO getProductById(
+    public ResponseEntity<ProductResponseDTO> getProductById(
            @Valid @PathVariable("id") Long id
     ){
-        return this.productService.getProductById(id);
+        return ResponseEntity.ok(productService.getProductById(id));
     }
 
     /*    @GetMapping("/{name}")
@@ -44,10 +44,11 @@ public class ProductController {
     }*/
 
     @PostMapping
-    public ProductResponseDTO postProduct(
+    public ResponseEntity<ProductResponseDTO> postProduct(
            @Valid @RequestBody ProductCreateDTO product
     ){
-            return this.productService.postProduct(product);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(productService.postProduct(product));
     }
 
     @PutMapping("/{id}")
@@ -55,15 +56,15 @@ public class ProductController {
             @PathVariable("id") Long id,
             @Valid @RequestBody Product productDetails
     ){
-        ProductResponseDTO product = productService.updateProduct(id, productDetails);
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok(productService.updateProduct(id, productDetails));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(
+    public ResponseEntity<Void> deleteProduct(
            @PathVariable("id") Long id
     ){
-        this.productService.deleteProduct(id);
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
